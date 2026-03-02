@@ -2,5 +2,4 @@
 
 Простой пасьянс косынка. Только core-gameplay.
 
-
-![](C:\Users\Alex\AppData\Roaming\marktext\images\2026-03-02-19-59-47-image.png)
+<img width="714" height="401" alt="image" src="https://github.com/user-attachments/assets/b6b39bd8-c292-4de7-bbaf-f65b95400812" />
