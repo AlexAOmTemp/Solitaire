@@ -4,12 +4,13 @@ using System.Dynamic;
 using Custom;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private Transform _remainDeck;
+    [FormerlySerializedAs("_remainDeck")] [SerializeField] private Transform _stock;
     [SerializeField] private CardSpawner _cardSpawner;
-    [SerializeField] private CardStacksSpawner _cardStacks;
+    [FormerlySerializedAs("_tableau")] [FormerlySerializedAs("_cardStacks")] [SerializeField] private TableauList _tableauList;
 
     public static GameController Instance;
     
@@ -36,10 +37,10 @@ public class GameController : MonoBehaviour
         
         Instance = this;
         
-        for (var i = 0; i < _cardStacks.CardStackSlots.Count; i++)
+        for (var i = 0; i < _tableauList.TableauSlots.Count; i++)
         {
             var spawned = _cardSpawner.SpawnNext(i+1);
-            SetCardsToStack(spawned, _cardStacks.CardStackSlots[i]);
+            SetCardsToStack(spawned, _tableauList.TableauSlots[i]);
         }
 
         var remainCards = _cardSpawner.SpawnNext(_deck.CardsRemaining);
@@ -47,11 +48,11 @@ public class GameController : MonoBehaviour
         int order = 1;
         foreach (GameObject remainCard in remainCards)
         {
-            MoveCard(remainCard.transform, _remainDeck, false, order++,false);
+            MoveCard(remainCard.transform, _stock, false, order++,false);
         }
     }
 
-    private void SetCardsToStack(List<GameObject> spawned, CardStackSlot slot)
+    private void SetCardsToStack(List<GameObject> spawned, TableauSlot slot)
     {
         for (var j = 0; j < spawned.Count; j++)
         {

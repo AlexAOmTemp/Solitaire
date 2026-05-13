@@ -26,7 +26,7 @@ public class DragNDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         List<Transform> cardTransformsPack = new();
-        if (transform.parent.TryGetComponent(out CardStackSlot cardStackSlotScript))
+        if (transform.parent.TryGetComponent(out TableauSlot cardStackSlotScript))
         {
             cardTransformsPack = cardStackSlotScript.GetSelectedAndLyingBelow(transform);
             Debug.Log("Stack: " + cardStackSlotScript.transform.childCount);
